@@ -1,0 +1,27 @@
+{
+  "name": "johnkrovitch/configuration",
+  "description": "Configuration abstract class for Symfony projects",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JohnKrovitch",
+      "email": "arnaudfrezet@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/options-resolver": "^3.2",
+    "symfony/dependency-injection": "^3.2"
+  },
+  "autoload": {
+    "psr-0": {
+      "JK\\Configuration": "src/JK/Configuration"
+    }
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.1"
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
