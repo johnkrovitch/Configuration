@@ -1,6 +1,6 @@
 <?php
 
-namespace JK\Configuration\Configuration;
+namespace JK\Configuration;
 
 use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
