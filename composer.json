@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-0": {
-      "JK\\Configuration": "src/JK/Configuration"
+      "JK\\Configuration": "src/"
     }
   },
   "require-dev": {
