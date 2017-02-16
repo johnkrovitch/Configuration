@@ -14,7 +14,7 @@
     "symfony/dependency-injection": "^3.2"
   },
   "autoload": {
-    "psr-0": {
+    "psr-4": {
       "JK\\Configuration": "src/"
     }
   },
