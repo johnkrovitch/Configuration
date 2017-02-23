@@ -7,3 +7,8 @@ Extends this class allow you to have a structured configuration parameters holde
 
 ## Example
 You can see an example [here](https://github.com/larriereguichet/AdminBundle/blob/master/Application/Configuration/ApplicationConfiguration.php)
+
+## Installation
+```
+    composer install johnkrovitch/configuration
+```
