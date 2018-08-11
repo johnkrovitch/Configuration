@@ -80,6 +80,28 @@ abstract class Configuration implements ConfigurationInterface
     }
 
     /**
+     * Alias of getParameters().
+     *
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public function get($name)
+    {
+        return $this->getParameter($name);
+    }
+
+    /**
+     * Alias of setParameters();
+     *
+     * @param array $parameters
+     */
+    public function set(array $parameters)
+    {
+        $this->setParameters($parameters);
+    }
+
+    /**
      * Return all parameters.
      *
      * @return array
