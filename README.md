@@ -1,4 +1,7 @@
 # Configuration
+
+[![GuardRails badge](https://badges.production.guardrails.io/johnkrovitch/Configuration.svg)](https://www.guardrails.io)
+
 Configuration class for Symfony projects
 
 
