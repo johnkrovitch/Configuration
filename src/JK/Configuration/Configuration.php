@@ -80,7 +80,7 @@ abstract class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Alias of getParameters().
+     * Alias of getParameter().
      *
      * @param string $name
      *
@@ -89,6 +89,16 @@ abstract class Configuration implements ConfigurationInterface
     public function get($name)
     {
         return $this->getParameter($name);
+    }
+
+    /**
+     * Alias of getParameters().
+     *
+     * @return array
+     */
+    public function all()
+    {
+        return $this->getParameters();
     }
 
     /**
