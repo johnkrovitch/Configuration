@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "symfony/options-resolver": "^2.8 || ^3.0 || ^4.0",
+    "symfony/options-resolver": "^5.0.8",
     "symfony/dependency-injection": "^2.8 || ^3.0 || ^4.0"
   },
   "autoload": {
