@@ -12,6 +12,7 @@ $finder = \PhpCsFixer\Finder::create()
 return \PhpCsFixer\Config::create()
     ->setRules([
         '@Symfony' => true,
+        'yoda_style' => false,
     ])
     ->setFinder($finder)
 ;

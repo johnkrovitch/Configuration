@@ -1,9 +1,8 @@
 .PHONY: all
 
+include .make/tests.mk
+
 all: install
 
 install:
 	composer install
-
-tests:
-	bin/var-dump-check --symfony --doctrine --tracy src
