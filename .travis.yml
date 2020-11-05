@@ -4,7 +4,11 @@ php:
     - 7.4
 
 install:
-    - composer install
+    - make install
 
 script:
-    - make tests
+    - make tests.ci
+
+after_script:
+    - wget https://scrutinizer-ci.com/ocular.phar
+    - php ocular.phar code-coverage:upload --format=php-clover var/phpunit/logs/clover.xml

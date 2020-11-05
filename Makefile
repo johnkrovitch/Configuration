@@ -1,9 +1,10 @@
-.PHONY: all
+.PHONY: all composer.install
+
+include .make/tests.mk
 
 all: install
 
-install:
-	composer install
+install: composer.install php-cs-fixer.install
 
-tests:
-	bin/var-dump-check --symfony --doctrine --tracy src
+composer.install:
+	composer install
