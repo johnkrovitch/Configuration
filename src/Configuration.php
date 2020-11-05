@@ -17,9 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 abstract class Configuration implements ConfigurationInterface
 {
     protected ParameterBag $values;
-    
+
     abstract public function configureOptions(OptionsResolver $resolver): void;
-    
+
     public function configure(array $options = []): self
     {
         if ($this->isFrozen()) {
@@ -27,40 +27,40 @@ abstract class Configuration implements ConfigurationInterface
         }
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
-    
+
         try {
             $options = $resolver->resolve($options);
             $this->values = new FrozenParameterBag($options);
         } catch (Exception $exception) {
             throw new InvalidConfigurationException($exception->getMessage(), $exception->getCode(), $exception);
         }
-    
+
         return $this;
     }
-    
+
     public function toArray(): array
     {
         if (!$this->isFrozen()) {
             throw new NotFrozenException();
         }
-    
+
         return $this->values->all();
     }
-    
+
     public function get(string $name)
     {
         if (!$this->isFrozen()) {
             throw new NotFrozenException();
         }
-    
+
         return $this->values->get($name);
     }
-    
+
     public function has(string $name): bool
     {
         return $this->values->has($name);
     }
-    
+
     public function isFrozen(): bool
     {
         return isset($this->values);

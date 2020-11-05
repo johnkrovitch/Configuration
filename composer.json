@@ -21,7 +21,9 @@
     "autoload": {
         "psr-4": {
             "JK\\Configuration\\": "src/"
-        },
+        }
+    },
+    "autoload-dev": {
         "psr-4-dev": {
             "JK\\Configuration\\Tests\\": "tests/"
         }

@@ -18,14 +18,14 @@ phpunit.run.stop-on-failure:
 
 # CodeStyle
 php-cs-fixer.fix:
-	php-cs-fixer fix
+	bin/php-cs-fixer fix
 
 php-cs-fixer.ci:
-	php php-cs-fixer fix --dry-run --using-cache=no --verbose
+	bin/php-cs-fixer fix --dry-run --using-cache=no --verbose
 
 php-cs-fixer.install:
 	@echo "Install binary using composer (globally)"
-	composer global require friendsofphp/php-cs-fixer
+	composer require friendsofphp/php-cs-fixer
 	@echo "Exporting composer binary path"
 	@export PATH="$PATH:$HOME/.composer/vendor/bin"
 
