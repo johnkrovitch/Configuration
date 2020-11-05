@@ -1,7 +1,5 @@
 # Configuration
 
-[![GuardRails badge](https://badges.production.guardrails.io/johnkrovitch/Configuration.svg)](https://www.guardrails.io)
-
 Configuration class for Symfony projects. This package allows you to manipulate immutable configuration object. You can
 add your custom getters to improve parameters php type, or you the default generic getters. 
 
@@ -57,3 +55,5 @@ class MyService {
 }
 
 ```
+
+The Configuration use the Symfony [OptionsResolver component](https://symfony.com/doc/current/components/options_resolver.html) 
