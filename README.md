@@ -47,6 +47,34 @@ class MyService {
         $configuration = new MyConfiguration();
         $configuration->configure($options);
 
+        $configuration->get('panda'); // "bamboo"
+        $configuration->has('panda'); // true
+        $configuration->toArray(); // ['panda' => 'bamboo']        
+    }
+
+}
+
+```
+
+You can also provide a options resolver :
+
+```php
+use MyConfiguration;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class MyService {
+    
+    public function myMethod(array $options): void
+    {
+        $configuration = new MyConfiguration();
+        $resolver = new OptionsResolver();
+    
+        // Do something with the resolver
+        // $resolver->setDefaults('...');
+
+        // Pass your custom resolver
+        $configuration->configure($options, $resolver);
+
         $configuration->get('panda'); // Returns "bamboo"
         $configuration->has('panda'); // Returns true
         $configuration->toArray(); // Returns ['panda' => 'bamboo']        
@@ -55,5 +83,8 @@ class MyService {
 }
 
 ```
+
+
+## OptionsResolver
 
 The Configuration use the Symfony [OptionsResolver component](https://symfony.com/doc/current/components/options_resolver.html) 
