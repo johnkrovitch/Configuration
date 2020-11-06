@@ -18,14 +18,20 @@ abstract class Configuration implements ConfigurationInterface
 {
     protected ParameterBag $values;
 
-    abstract public function configureOptions(OptionsResolver $resolver): void;
+    /**
+     * Configure the options using the resolver to set defaults, required, and normalizers.
+     */
+    abstract protected function configureOptions(OptionsResolver $resolver): void;
 
-    public function configure(array $options = []): self
+    public function configure(array $options = [], OptionsResolver $resolver = null): self
     {
         if ($this->isFrozen()) {
             throw new AlreadyFrozenException();
         }
-        $resolver = new OptionsResolver();
+
+        if ($resolver === null) {
+            $resolver = new OptionsResolver();
+        }
         $this->configureOptions($resolver);
 
         try {

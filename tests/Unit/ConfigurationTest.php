@@ -7,6 +7,7 @@ use JK\Configuration\Exception\AlreadyFrozenException;
 use JK\Configuration\Exception\InvalidConfigurationException;
 use JK\Configuration\Exception\NotFrozenException;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ConfigurationTest extends TestCase
 {
@@ -29,6 +30,29 @@ class ConfigurationTest extends TestCase
             'location' => 'forest',
         ], $configuration->toArray());
         $this->assertEquals('bamboo', $configuration->get('panda_parameter'));
+    }
+
+    public function testConfigureWithConfiguredResolver(): void
+    {
+        $configuration = $this->createConfiguration([
+            'panda' => 'bamboo',
+        ]);
+
+        $resolver = new OptionsResolver();
+        $resolver->setRequired('forest');
+
+        $configuration->configure([
+            'panda' => 'big_bamboo',
+            'forest' => 'yes',
+        ], $resolver);
+        $this->assertTrue($configuration->isFrozen());
+        $this->assertTrue($configuration->has('panda'));
+        $this->assertTrue($configuration->has('forest'));
+        $this->assertEquals([
+            'panda' => 'big_bamboo',
+            'forest' => 'yes',
+        ], $configuration->toArray());
+        $this->assertEquals('big_bamboo', $configuration->get('panda'));
     }
 
     public function testConfigureWithMissingRequiredParameter(): void
