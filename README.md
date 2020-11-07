@@ -10,7 +10,7 @@ composer install johnkrovitch/configuration
 
 v2.0: For Symfony 5.1+
 
-v1.0: For Symfony 3.4, 4.4 (not maintained anymore)
+v1.0: For Symfony 3.4, 4.4
 
 ## Usage
 
