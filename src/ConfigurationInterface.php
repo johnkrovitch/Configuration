@@ -35,4 +35,10 @@ interface ConfigurationInterface
      * Return true if the configuration is frozen.
      */
     public function isFrozen(): bool;
+
+    public function getBool(string $name): bool;
+
+    public function getInt(string $name): int;
+
+    public function getString(string $name): string;
 }
