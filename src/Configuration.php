@@ -71,4 +71,19 @@ abstract class Configuration implements ConfigurationInterface
     {
         return isset($this->values);
     }
+
+    public function getBool(string $name): bool
+    {
+        return (bool) $this->get($name);
+    }
+
+    public function getInt(string $name): int
+    {
+        return (int) $this->get($name);
+    }
+
+    public function getString(string $name): string
+    {
+        return (string) $this->get($name);
+    }
 }
