@@ -1,5 +1,6 @@
 tools:
-    external_code_coverage: true
+    external_code_coverage:
+        runs: 2
 
 filter:
     excluded_paths:
