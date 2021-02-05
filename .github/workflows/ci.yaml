@@ -1,0 +1,52 @@
+name: Build and Test
+
+on:
+    - push
+
+jobs:
+    build:
+        name: Build and Test
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php_version:
+                    - '7.4'
+                    #- '8.0' TODO change jk configuration to supports php 8
+        steps:
+            -   uses: actions/checkout@v2
+            
+            -   name: Cache vendors
+                uses: actions/cache@v2
+                with:
+                    path: |
+                        ~/.composer/cache
+                    key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+            
+            -   name: Setup PHP with extensions
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php_version }}
+                    extensions: ''
+                    ini-values: memory_limit=-1
+                    coverage: pcov
+                    tools: composer, php-cs-fixer, cs2pr
+            
+            -   name: Run phpunit
+                run: composer install --no-interaction
+            
+            -   name: Run phpunit
+                run: make phpunit.run
+            
+            -   name: Run php-cs-fixer
+                run: make php-cs-fixer.ci
+            
+            -   name: Run phpstan
+                run: make phpstan.analyse
+            
+            -   name: Run var-dump checker
+                run: make tests.var-dump-checker.ci
+            
+            -   name: Upload code coverage to Scrutinizer CI
+                run: |
+                    wget https://scrutinizer-ci.com/ocular.phar
+                    php ocular.phar code-coverage:upload --format=php-clover var/phpunit/logs/clover.xml

@@ -4,4 +4,3 @@ tools:
 filter:
     excluded_paths:
         - 'tests'
-        - 'sam.php'
