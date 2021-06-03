@@ -1,9 +1,9 @@
-.PHONY: tests tests.ci tests.stop-on-failure php-cs-fixer.fix php-cs-fixer.ci phpstan.analyse phpunit.run security.check tests.stop-on-failure bc.check tests.var-dump-checker.ci
+.PHONY: tests tests.ci tests.stop-on-failure php-cs-fixer.fix php-cs-fixer.ci phpstan.analyse phpunit.run tests.stop-on-failure bc.check tests.var-dump-checker.ci
 
 # PHPUnit
-tests: phpunit.run php-cs-fixer.fix phpstan.analyse security.check tests.var-dump-checker
+tests: phpunit.run php-cs-fixer.fix phpstan.analyse tests.var-dump-checker
 
-tests.ci: phpunit.run php-cs-fixer.ci phpstan.analyse security.check tests.var-dump-checker.ci
+tests.ci: phpunit.run php-cs-fixer.ci phpstan.analyse tests.var-dump-checker.ci
 
 tests.stop-on-failure:
 	bin/phpunit --stop-on-failure -v
@@ -18,10 +18,10 @@ phpunit.run.stop-on-failure:
 
 # CodeStyle
 php-cs-fixer.fix:
-	bin/php-cs-fixer fix
+	bin/php-cs-fixer fix --allow-risky=yes
 
 php-cs-fixer.ci:
-	bin/php-cs-fixer fix --dry-run --using-cache=no --verbose
+	bin/php-cs-fixer fix --allow-risky=yes --dry-run --using-cache=no --verbose
 
 php-cs-fixer.install:
 	@echo "Install binary using composer (globally)"
@@ -30,17 +30,14 @@ php-cs-fixer.install:
 	@export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 phpstan.analyse:
-	bin/phpstan analyse --level=1 src
+	bin/phpstan analyse --level=5 src
 	bin/phpstan analyse --level=1 tests
 
 # Misc
-security.check:
-	bin/security-checker security:check
-
 bc.check:
 	bin/roave-backward-compatibility-check
 
 tests.var-dump-checker:
-
-tests.var-dump-checker.ci:
 	bin/var-dump-check --symfony --exclude vendor --exclude demo .
+
+tests.var-dump-checker.ci: tests.var-dump-checker
